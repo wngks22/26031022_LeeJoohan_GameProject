@@ -9,12 +9,26 @@ class GameMain : G2AppBase
 	public override System.Drawing.Size ScreenSize => GameGlobal.ScreenSize;
 	public override string GameName => GameGlobal.GameName;
 
-	protected override void Initialize()
+	private G2Texture? _bgTexture = null;
+	private G2Texture? _uiTitleTexture = null;
+	private G2Texture? _uiButtonTexture = null;
+
+	private G2Font? _fntMessage = null;
+
+
+    protected override void Initialize()
 	{
 		//---------------------------------------
 		// 게임 관련 객체를 생성합니다.
 		//---------------------------------------
-	}
+		var texUiDir = "resource/image/ui/";
+
+		_bgTexture = new(texUiDir+"background.png");
+        _uiTitleTexture = new(texUiDir + "menu/title.png");
+		_uiButtonTexture = new(texUiDir + "menu/button.png");
+
+		_fntMessage = new("resource/font/ChakraPetch-Bold", 42);
+    }
 
 	protected override void Update()
 	{
@@ -36,7 +50,13 @@ class GameMain : G2AppBase
 		//---------------------------------------
 		// 게임 관련 객체를 렌더링 합니다.
 		//---------------------------------------
-	}
+
+		_bgTexture.Draw();
+		_uiTitleTexture.Draw(257.2f, 84.3f);
+		_uiButtonTexture.Draw();
+
+		_fntMessage.DrawText("SCORE", new(20, 20, 500, 100), new(0.0f, 1.0f, 0.0f, 1.0f));
+    }
 
 	public override void Dispose()
 	{
@@ -44,5 +64,10 @@ class GameMain : G2AppBase
 		//---------------------------------------
 		// 게임 관련 객체를 해제합니다.
 		//---------------------------------------
-	}
+		_bgTexture.Dispose();
+		_uiTitleTexture.Dispose();
+		_uiButtonTexture.Dispose();
+
+		_fntMessage.Dispose();
+    }
 }
