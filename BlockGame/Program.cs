@@ -1,4 +1,4 @@
-﻿namespace SquareRhythm
+namespace BlockGame
 {
     //internal class Program
     //{
