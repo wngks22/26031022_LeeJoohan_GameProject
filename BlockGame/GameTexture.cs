@@ -21,6 +21,14 @@ class GameTexture : IDisposable
 		texture.Draw(x, y);
 	}
 
+	public void DrawCenter(float centerX, float centerY, float scale)
+	{
+		float x = centerX - width * scale / 2.0f;
+		float y = centerY - height * scale / 2.0f;
+		texture.Draw(new Vortice.Mathematics.Rect(x, y, width * scale, height * scale),
+			new Vortice.Mathematics.Rect(0, 0, width, height));
+	}
+
 	public void Dispose()
 	{
 		texture.Dispose();

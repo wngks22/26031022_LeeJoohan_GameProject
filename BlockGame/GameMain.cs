@@ -8,6 +8,7 @@ class GameMain : G2AppBase
 	public override string GameName => GameGlobal.GameName;
 
 	private SceneType currentScene = SceneType.Title;
+	public ScoreManager Score = new ScoreManager();
 	private GameTexture? background;
 	private TitleScene? titleScene;
 	private GameplayScene? gameplayScene;
@@ -71,6 +72,10 @@ class GameMain : G2AppBase
 		if (currentScene == SceneType.Gameplay)
 		{
 			gameplayScene?.Start();
+		}
+		else if (currentScene == SceneType.Result)
+		{
+			resultScene?.Start();
 		}
 	}
 
